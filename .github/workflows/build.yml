@@ -21,10 +21,12 @@ jobs:
 
       - name: Install iOS SDK
         run: |
-          mkdir -p ~/theos/sdks
-          cd ~/theos/sdks
-          curl -L -o iPhoneOS12.4.sdk.tar.xz https://github.com/theos/sdks/releases/download/master/iPhoneOS12.4.sdk.tar.xz
-          tar -xf iPhoneOS12.4.sdk.tar.xz
+          mkdir -p $HOME/theos/sdks
+          cd $HOME/theos/sdks
+          curl -L -o sdk.tar.xz https://github.com/theos/sdks/releases/download/master-146e41f/iPhoneOS12.4.sdk.tar.xz
+          file sdk.tar.xz
+          tar -xf sdk.tar.xz
+          ls
 
       - name: Build Package
         run: |
