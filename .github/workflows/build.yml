@@ -21,12 +21,15 @@ jobs:
 
       - name: Install iOS SDK
         run: |
-          mkdir -p $HOME/theos/sdks
-          cd $HOME/theos/sdks
+          mkdir -p ~/theos/sdks
+          cd ~/theos/sdks
           curl -L -o sdk.tar.xz https://github.com/theos/sdks/releases/download/master-146e41f/iPhoneOS12.4.sdk.tar.xz
-          file sdk.tar.xz
           tar -xf sdk.tar.xz
-          ls
+
+          # Fix old SDK module map error on new macOS/clang
+          if [ -f ~/theos/sdks/iPhoneOS12.4.sdk/usr/include/mach-o/module.map ]; then
+            mv ~/theos/sdks/iPhoneOS12.4.sdk/usr/include/mach-o/module.map ~/theos/sdks/iPhoneOS12.4.sdk/usr/include/mach-o/module.modulemap
+          fi
 
       - name: Build Package
         run: |
@@ -37,5 +40,5 @@ jobs:
       - name: Upload DEB
         uses: actions/upload-artifact@v4
         with:
-          name: deb-file
+          name: appstoretroller-deb
           path: packages/*.deb
