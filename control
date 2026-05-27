@@ -1,0 +1,9 @@
+Package: dev.mineek.appstoretroller
+Name: AppStore Troller
+Version: 0.0.1-iphoneos12
+Architecture: iphoneos-arm
+Description: Lets older iOS devices claim a newer iOS version for App Store purchase flow, then install the last compatible app version if available.
+Maintainer: Mineek
+Author: Mineek
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader
